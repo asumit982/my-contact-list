@@ -7,6 +7,16 @@
     <title><%=locals.title%></title>
 </head>
 <body>
-    <h1>Hello!!</h1>
+    <h1>Contact List</h1>
+    <div>
+        <ul>
+            <% for(let i of contact_list){%>
+                <li>
+                    <p><%= i.name %></p>
+                    <p><%= i.phone %></p>
+                </li>
+            <%}%>
+        </ul>
+    </div>
 </body>
 </html>
