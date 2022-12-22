@@ -21,12 +21,18 @@ var contactList = [
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname,'views'));
+app.use(express.urlencoded());
 
 app.get('/',function(req,res){
     return res.render('home', 
     {title: "My Contact List",
     contact_list : contactList
 });
+})
+
+app.post('/create-contact', function(req,res){
+    contactList.push(req.body);
+    return res.redirect('back');
 })
 
 app.listen(port, function(err){
