@@ -4,7 +4,7 @@ const path = require('path');
 
 const app = express();
 
-var contactList = [
+var contacts = [
     {
         name : "Spider Man",
         phone : 587634863
@@ -22,11 +22,12 @@ var contactList = [
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname,'views'));
 app.use(express.urlencoded());
+app.use(express.static('assets'));
 
 app.get('/',function(req,res){
     return res.render('home', 
     {title: "My Contact List",
-    contact_list : contactList
+    contact_list : contacts
 });
 })
 
