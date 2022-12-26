@@ -23,6 +23,10 @@ li:hover {
     box-shadow: 0px 0px 3px 3px rgb(248, 243, 243);
 }
 
+::placeholder{
+    color: black;
+}
+
 #title-icon {
     font-size: 1.75rem;
 }

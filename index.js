@@ -31,8 +31,22 @@ app.get('/',function(req,res){
 });
 })
 
+app.get('/delete-contact', function(req,res){
+    console.log(req.query);
+
+    let phone = req.query.phone;
+
+    let contactIndex = contacts.findIndex(contact => contact.phone == phone);
+
+    if(contactIndex != -1){
+        contacts.splice(contactIndex,1);
+    }
+
+    return res.redirect('back');
+})
+
 app.post('/create-contact', function(req,res){
-    contactList.push(req.body);
+    contacts.push(req.body);
     return res.redirect('back');
 })
 
