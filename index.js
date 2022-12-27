@@ -29,11 +29,20 @@ app.use(express.urlencoded());
 app.use(express.static('assets'));
 
 app.get('/',function(req,res){
-    return res.render('home', 
-    {title: "My Contact List",
-    contact_list : contacts
+
+    Contact.find({}, function(err,contacts){
+
+        if(err){
+            console.log("Error in fetching contact");
+            return;
+        }
+
+        return res.render('home', {
+            title : "Contacts List",
+            contact_list : contacts
+        })
+    })
 });
-})
 
 app.get('/delete-contact', function(req,res){
     console.log(req.query);
