@@ -4,6 +4,7 @@ const path = require('path');
 
 
 const db = require('./config/mongoose');
+const Contact = require('./models/contact');
 
 const app = express();
 
@@ -49,8 +50,21 @@ app.get('/delete-contact', function(req,res){
 })
 
 app.post('/create-contact', function(req,res){
-    contacts.push(req.body);
+    // contacts.push(req.body);
+
+    Contact.create({
+        name : req.body.name,
+        phone : req.body.phone
+    }, function(err, newContact){
+        if(err){
+            console.log("Error in creating a contact");
+            return;
+        }
+
+        console.log('****', newContact);
+
     return res.redirect('back');
+    });
 })
 
 app.listen(port, function(err){
