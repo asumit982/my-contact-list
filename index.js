@@ -45,18 +45,22 @@ app.get('/',function(req,res){
 });
 
 app.get('/delete-contact', function(req,res){
-    console.log(req.query);
+   
+    //get the id from query in the ul
+   let id = req.query.id;
 
-    let phone = req.query.phone;
-
-    let contactIndex = contacts.findIndex(contact => contact.phone == phone);
-
-    if(contactIndex != -1){
-        contacts.splice(contactIndex,1);
+   //find the contact in the database using id and delete
+   Contact.findByIdAndDelete(id,function(err){
+    if(err){
+        console.log("Error in deleting an object from database");
+        return;
     }
 
     return res.redirect('back');
-})
+});
+  
+});
+
 
 app.post('/create-contact', function(req,res){
     // contacts.push(req.body);
